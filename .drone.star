@@ -1,29 +1,25 @@
 def main(ctx):
-    return [
-        {
+    archs = ["amd64", "arm64", "arm"]
+
+    pipelines = []
+
+    for arch in archs:
+        pipelines.append({
             "kind": "pipeline",
-            "name": "build-1",
+            "name": "build-linux-" + arch,
+            "platform": {
+                "os": "linux",
+                "arch": arch
+            },
             "steps": [
                 {
                     "name": "test-build",
                     "image": "alpine:latest",
                     "commands": [
-                        "echo Hello World 1"
+                        "echo Hello From Arch: $(arch)"
                     ]
                 }
             ]
-        },
-        {
-            "kind": "pipeline",
-            "name": "build-2",
-            "steps": [
-                {
-                    "name": "test-build",
-                    "image": "alpine:latest",
-                    "commands": [
-                        "echo Hello World 2"
-                    ]
-                }
-            ]
-        }
-    ]
+        })
+
+    return pipelines
