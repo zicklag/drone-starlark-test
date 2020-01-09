@@ -6,7 +6,7 @@ def main(ctx):
     for arch in archs:
         pipelines.append({
             "kind": "pipeline",
-            "name": "build-linux-" + arch,
+            "name": "build-linux-" + arch + "-" + ctx.build.id,
             "platform": {
                 "os": "linux",
                 "arch": arch
