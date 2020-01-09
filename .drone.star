@@ -6,7 +6,7 @@ def main(ctx):
     for arch in archs:
         pipelines.append({
             "kind": "pipeline",
-            "name": "build-linux-" + arch + "-" + ctx.build.id,
+            "name": "build-linux-" + arch,
             "platform": {
                 "os": "linux",
                 "arch": arch
@@ -16,7 +16,8 @@ def main(ctx):
                     "name": "test-build",
                     "image": "alpine:latest",
                     "commands": [
-                        "echo Hello From Arch: $(arch)"
+                        "echo Hello From Arch: $(arch)",
+                        "echo Build Number: $DRONE_BUILD_NUMBER"
                     ]
                 }
             ]
